@@ -39,7 +39,6 @@ background:transparent;
 display:block;
 margin:auto;
 overflow:visible;
-filter:drop-shadow(0 0 20px rgba(0,255,255,.15));
 }
 
 .digital{
@@ -67,7 +66,14 @@ color:#d7ffff;
 
 <svg id="clock" class="clock" width="260" height="260" viewBox="0 0 260 260">
 
-<circle cx="130" cy="130" r="127" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="3"/>
+<defs>
+<radialGradient id="faceGrad" cx="50%" cy="50%" r="70%">
+<stop offset="0%" stop-color="#2d2d40"/>
+<stop offset="100%" stop-color="#12121b"/>
+</radialGradient>
+</defs>
+
+<circle cx="130" cy="130" r="127" fill="url(#faceGrad)" stroke="rgba(255,255,255,.08)" stroke-width="3" style="filter:drop-shadow(0 0 20px rgba(0,255,255,.18));"/>
 
 <g id="ticks"></g>
 
@@ -93,7 +99,7 @@ color:#d7ffff;
 
 const svgns="http://www.w3.org/2000/svg";
 
-const cx=130,cy=130,outer=127;
+const cx=130,cy=130,outer=120;
 
 const ticksG=document.getElementById("ticks");
 
@@ -131,7 +137,7 @@ line.setAttribute("stroke-width",i%5===0?"3":"2");
 
 line.setAttribute("stroke-linecap","round");
 
-if(i%5===0)line.style.filter="drop-shadow(0 0 4px cyan)";
+if(i%5===0)line.style.filter="drop-shadow(0 0 8px cyan)";
 
 ticksG.appendChild(line);
 
@@ -165,7 +171,7 @@ t.setAttribute("font-weight","bold");
 
 t.setAttribute("fill","white");
 
-t.style.filter="drop-shadow(0 0 5px cyan)";
+t.style.filter="drop-shadow(0 0 10px cyan)";
 
 t.textContent=i;
 
